@@ -29,6 +29,8 @@ public class Main {
     }
 
     /**
+     * Calculates number of ways balls can be drawn from the bag using one ball or two balls at a time.
+     *
      * Calculation is based on formula ways(n) = ways(n-1) + ways(n-2).
      *
      * The proof for this formula can be found combining basic formulas:
@@ -46,28 +48,27 @@ public class Main {
             throw new IllegalArgumentException("Ball count should be positive.");
         }
 
-        BigInteger ways2 = ZERO;
+        BigInteger ways2 = ONE;
         BigInteger ways1 = ZERO;
 
         for (int i = 0; i < ballCount; i++) {
-            if (i == 0) {
-                ways1 = ONE;
-                ways2 = ZERO;
-            } else {
-                BigInteger ways = ways1.add(ways2);
-                ways2 = ways1;
-                ways1 = ways;
-            }
+            BigInteger ways = ways1.add(ways2);
+            ways2 = ways1;
+            ways1 = ways;
         }
         return ways1.add(ways2);
     }
 
+    /**
+     * Prints program help
+     */
     private static void printHelp() {
+        String canonicalName = Main.class.getCanonicalName();
         System.out.printf("Please use program in following way: %n");
-        System.out.printf("    java ru.asolodkaya.Main [number], where [number] is ball count more than 0.%n");
+        System.out.printf("    java %s [number], where [number] is ball count more than 0.%n", canonicalName);
         System.out.printf("For example:%n");
-        System.out.printf("    java ru.asolodkaya.Main 10%n");
-        System.out.printf("    java ru.asolodkaya.Main 3%n");
+        System.out.printf("    java %s 10%n", canonicalName);
+        System.out.printf("    java %s 3%n", canonicalName);
     }
 
 }

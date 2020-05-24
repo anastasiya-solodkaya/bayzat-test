@@ -6,6 +6,9 @@ import static java.math.BigInteger.ONE;
 import static java.math.BigInteger.valueOf;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Provides number of tests for problem solution
+ */
 public class MainTest {
 
     @Test(expected = IllegalArgumentException.class)
